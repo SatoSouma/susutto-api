@@ -2,8 +2,6 @@
 
 ## Dockerfile
 
----
-
 ### image 作成
 
 ```bash
@@ -53,8 +51,6 @@ docker container stop <コンテナ ID>
 ```
 
 ## docker-compose.yml
-
----
 
 ### image をビルドして docker-compose 内に記述してある内容でコンテナを立ち上げ
 
