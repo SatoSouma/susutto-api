@@ -9,10 +9,13 @@
     "lint": "eslint ./**/*.ts && eslint ./server.ts && prettier ./**/*.ts"
   },
   "dependencies": {
-    "express": "^4.16.1"
+    "express": "^4.16.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
+    "@types/mysql": "^2.15.20",
     "@types/node": "^17.0.14",
     "@typescript-eslint/parser": "^5.10.2",
     "eslint": "^8.8.0",
