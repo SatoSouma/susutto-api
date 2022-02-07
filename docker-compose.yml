@@ -1,0 +1,21 @@
+version: "3"
+services:
+  api:
+    # コンテナ名
+    container_name: tw-api
+    build:
+      #docker buildコマンドを実行した場所(composeの場合は up等)
+      context: ./src
+    # ホスト側ポート番号:コンテナ側ポート番号　
+    ports:
+      - "8010:8080"
+    # 起動時に実行するコマンド
+    command: npm run dev
+    # 環境変数の設定
+    environment:
+      - DEBUG=app:*
+    # コンテナ内のディレクトリをマウントする
+    volumes:
+      - ./src:/app
+    #起動時のコンテナ内のカレントディレクトリ
+    working_dir: /app
