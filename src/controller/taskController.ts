@@ -7,6 +7,7 @@ const taskController = {
   },
 
   async store(req: express.Request, res: express.Response) {
+    console.log(req.body)
     const formData = req.body
     const results = await tasks.create(formData)
     res.send(results)

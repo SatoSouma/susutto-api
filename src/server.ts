@@ -9,7 +9,17 @@ const HOST: string = '0.0.0.0'
 // App
 const app = express()
 
-// task関連
+//cors許可
+app.use(
+  (req: express.Request, res: express.Response, next: express.NextFunction) => {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Methods', '*')
+    res.header('Access-Control-Allow-Headers', '*')
+    next()
+  }
+)
+
+// task関連API
 app.use(taskRouter)
 
 app.listen(PORT, HOST)
