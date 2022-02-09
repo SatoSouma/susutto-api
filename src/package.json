@@ -9,6 +9,7 @@
     "lint": "eslint ./**/*.ts && eslint ./server.ts && prettier ./**/*.ts"
   },
   "dependencies": {
+    "body-parser": "^1.19.1",
     "express": "^4.16.1",
     "moment": "^2.29.1",
     "mysql": "^2.18.1",
