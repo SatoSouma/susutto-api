@@ -11,6 +11,11 @@ const taskController = {
     const results = await tasks.create(formData)
     res.send(results)
   },
+
+  async getTasks(req: express.Request, res: express.Response) {
+    const results = await tasks.getTasks()
+    res.send(results)
+  },
 }
 
 export default taskController

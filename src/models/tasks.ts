@@ -1,4 +1,4 @@
-import tasksQuery from './tasksQuery'
+import tasksQuery from './sql/tasksQuery'
 import moment from 'moment'
 
 const tasks = {
@@ -17,11 +17,18 @@ const tasks = {
       departmentId
     )
 
-    if (result !== undefined) {
-      console.log(result)
-    } else {
-      console.log('unnnnnn')
-    }
+    return result
+  },
+
+  async getTasks() {
+    // const result = await tasksQuery(
+    //   taskName,
+    //   taskDetail,
+    //   deadLine,
+    //   nowDate,
+    //   departmentId
+    // )
+    // return result
   },
 }
 

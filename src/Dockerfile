@@ -8,7 +8,7 @@ WORKDIR /app
 # ワイルドカードを使用して、package.json と package-lock.json の両方が確実にコピーされるようにします。
 COPY package*.json ./
 
-# packege.jsonの記述からライブラリをインストール(コンテナ内で実行される)
+# packege.jsonの記述からライブラリをインストール(コンテナ内で実行される) image作成時に一度実行
 RUN npm install
 # 本番用にコードを作成している場合
 # RUN npm install --only=production
