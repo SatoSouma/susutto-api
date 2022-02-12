@@ -2,7 +2,7 @@ import tasksQuery from './tasksQuery'
 import moment from 'moment'
 
 const tasks = {
-  async create(form) {
+  async create(form: any) {
     const taskName = form.taskName
     const taskDetail = form.taskDetail
     const deadLine = form.deadLine
