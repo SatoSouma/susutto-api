@@ -1,27 +1,30 @@
-"use strict";
-
-import express from "express";
-import getTaskRouter from "./api/taskList";
+'use strict'
+import express from 'express'
+import taskRouter from './routes/tasks'
+import bodyParser from 'body-parser'
 
 // Constants
-const PORT: number = 8080;
-const HOST: string = "0.0.0.0";
+const PORT: number = 8080
+const HOST: string = '0.0.0.0'
 
 // App
-const app = express();
+const app = express()
 
-app.get("/", (req: express.Request, res: express.Response) => {
-  res.send("Hello World ~");
-});
+//cors許可
+app.use(
+  (req: express.Request, res: express.Response, next: express.NextFunction) => {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Methods', '*')
+    res.header('Access-Control-Allow-Headers', '*')
+    next()
+  }
+)
 
-// Task取得
-app.use(getTaskRouter);
+// data変換
+app.use(bodyParser.json())
 
-// Task登録
+// task関連API
+app.use(taskRouter)
 
-// Task削除
-
-// Task修正
-
-app.listen(PORT, HOST);
-console.log(`Running on http://${HOST}:${PORT}`);
+app.listen(PORT, HOST)
+console.log(`Running on http://${HOST}:${PORT}`)
