@@ -1,23 +1,15 @@
-import mysql, { ResultSetHeader } from 'mysql2'
+import mysql from 'promise-mysql'
+import config from './mysqlConfig'
+import tables from './tableName'
 
-const config: mysql.ConnectionOptions = {
-  host: 'host.docker.internal',
-  user: 'root',
-  password: '',
-  database: 'throw_work',
-}
-
-const taskTable = 'tasks'
-const issueTable = 'issue'
-
-const tasksGetQuery = async () => {
+const tasksGetQuery = async (id: string, nowDate: string) => {
   const conn = await mysql.createConnection(config as mysql.ConnectionOptions)
-  const taskGetQuery = `INSERT INTO ${taskTable} (taskName,taskDetail,deadLine) VALUES (?, ?, ?)`
-  const taskGetValue = [taskName, taskDetail, deadLine]
+  const taskGetQuery = `SELECT * FROM ${tables.taskTable} WHERE id IN (SELECT taskId FROM ${tables.issueTable} WHERE departmentId IN (SELECT departmentId FROM ${tables.belongTable} WHERE employeeId = ?)) AND taskStatus = 0 AND deadLine >= ? `
+  const taskGetValue = [id, nowDate]
 
   try {
-    await conn.execute(taskQuery)
-    return true
+    const rows = await conn.query(taskGetQuery, taskGetValue)
+    return rows
   } catch (err) {
     return false
   }

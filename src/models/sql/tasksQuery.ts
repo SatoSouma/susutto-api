@@ -1,14 +1,6 @@
 import mysql, { ResultSetHeader } from 'mysql2'
-
-const config: mysql.ConnectionOptions = {
-  host: 'host.docker.internal',
-  user: 'root',
-  password: '',
-  database: 'throw_work',
-}
-
-const taskTable = 'tasks'
-const issueTable = 'issue'
+import config from './mysqlConfig'
+import tables from './tableName'
 
 const tasksQuery = async (
   taskName: string,
@@ -18,7 +10,7 @@ const tasksQuery = async (
   departmentId: string
 ) => {
   const conn = await mysql.createConnection(config as mysql.ConnectionOptions)
-  const taskQuery = `INSERT INTO ${taskTable} (taskName,taskDetail,deadLine) VALUES (?, ?, ?)`
+  const taskQuery = `INSERT INTO ${tables.taskTable} (taskName,taskDetail,deadLine) VALUES (?, ?, ?)`
   const taskValues = [taskName, taskDetail, deadLine]
   // const issueQuery = `INSERT INTO ${issueTable} (taskId,departmentId,createdDate) VALUES (?, ?, ?)`
 
@@ -28,7 +20,7 @@ const tasksQuery = async (
       taskValues,
       async function (error, results: ResultSetHeader) {
         console.log(results.insertId)
-        const issueQuery = `INSERT INTO ${issueTable} (taskId,departmentId,createdDate) VALUES (?, ?, ?)`
+        const issueQuery = `INSERT INTO ${tables.issueTable} (taskId,departmentId,createdDate) VALUES (?, ?, ?)`
         const issueValues = [results.insertId, departmentId, nowDate]
         await conn.execute(issueQuery, issueValues)
       }
