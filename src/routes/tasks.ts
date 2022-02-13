@@ -5,6 +5,6 @@ const router = express.Router()
 
 router.get('/', taskController.index)
 router.post('/create', taskController.store)
-router.get('/create', taskController.index)
+router.get('/getAllTask', taskController.getTasks)
 
 export default router

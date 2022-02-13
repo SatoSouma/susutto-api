@@ -1,5 +1,14 @@
 # タスク管理アプリの API
 
+### /create
+task作成
+
+### /getTask
+部署ごとのtask取得
+
+### /putCharge
+task担当者更新
+
 ## 概要
 
 # Docker 起動方法メモ
