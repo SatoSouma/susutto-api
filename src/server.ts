@@ -4,7 +4,7 @@ import taskRouter from './routes/tasks'
 import bodyParser from 'body-parser'
 import http from 'http'
 import socketio from 'socket.io'
-import socketConnect from './socket/socketConnect'
+import { socketChargeUpdate } from './socket/socketConnect'
 
 // Constants
 const PORT: number = 8080
@@ -41,7 +41,7 @@ app.use(taskRouter)
 // socket
 io.on('connection', (socket: socketio.Socket) => {
   console.log('connect')
-  socketConnect.socketChargeUpdate(socket)
+  socketChargeUpdate(socket)
 })
 
 server.listen(PORT, HOST)
