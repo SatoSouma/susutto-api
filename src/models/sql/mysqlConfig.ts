@@ -1,4 +1,5 @@
-const config = {
+import mysql from 'mysql2'
+const config: mysql.ConnectionOptions = {
   host: 'host.docker.internal',
   user: 'root',
   password: '',
