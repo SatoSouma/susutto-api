@@ -9,3 +9,7 @@ export type createFormType = {
   deadLine: string
   department: string
 }
+
+export type statusUpType = {
+  taskId: string
+}

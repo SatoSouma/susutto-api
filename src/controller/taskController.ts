@@ -23,12 +23,18 @@ const taskController = {
     const results = await tasks.putCharge(formData)
     res.send(results)
   },
+
+  async updateStatus(req: express.Request, res: express.Response) {
+    const formData = req.body
+    const results = await tasks.statusUp(formData)
+    res.send(results)
+  },
+
+  async getAdminTasks(req: express.Request, res: express.Response) {
+    const results = await tasks.getAdminTasks()
+    console.log(results)
+    res.send(results)
+  },
 }
 
 export default taskController
-
-// 部署ごとのtask全権取得
-// task情報statusと共に全権取得
-// task追加
-// task status変更
-// task 削除

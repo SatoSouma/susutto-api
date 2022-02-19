@@ -14,9 +14,7 @@ const tasksChargeQuery = async (
   const updateValues = [taskId]
 
   try {
-    console.log('通過')
     await conn.execute(taskQuery, taskValues)
-    console.log('通過2')
     await conn.query(udateQuery, updateValues)
     return true
   } catch (err) {

@@ -1,4 +1,4 @@
-import mysql, { ResultSetHeader } from 'mysql2'
+import mysql from 'mysql2/promise'
 import config from './mysqlConfig'
 import tables from './tableName'
 
@@ -10,21 +10,11 @@ const tasksQuery = async (
   departmentId: string
 ) => {
   const conn = await mysql.createConnection(config as mysql.ConnectionOptions)
-  const taskQuery = `INSERT INTO ${tables.taskTable} (taskName,taskDetail,deadLine) VALUES (?, ?, ?)`
-  const taskValues = [taskName, taskDetail, deadLine]
-  // const issueQuery = `INSERT INTO ${issueTable} (taskId,departmentId,createdDate) VALUES (?, ?, ?)`
+  const taskQuery = `INSERT INTO ${tables.taskTable} (departmentNo,taskName,taskDetail,deadLine) VALUES (?, ?, ?, ?)`
+  const taskValues = [departmentId, taskName, taskDetail, deadLine]
 
   try {
-    await conn.execute(
-      taskQuery,
-      taskValues,
-      async function (error, results: ResultSetHeader) {
-        console.log(results.insertId)
-        const issueQuery = `INSERT INTO ${tables.issueTable} (taskId,departmentId,createdDate) VALUES (?, ?, ?)`
-        const issueValues = [results.insertId, departmentId, nowDate]
-        await conn.execute(issueQuery, issueValues)
-      }
-    )
+    await conn.execute(taskQuery, taskValues)
     return true
   } catch (err) {
     return false
