@@ -3,24 +3,23 @@ import express from 'express'
 import taskRouter from './routes/tasks'
 import bodyParser from 'body-parser'
 import http from 'http'
-import socketio from 'socket.io'
-import { socketChargeUpdate } from './socket/socketConnect'
-
+// import socketio from 'socket.io'
+// import { socketChargeUpdate } from './socket/socketConnect'
 // Constants
 const PORT: number = 8080
-const HOST: string = '0.0.0.0'
+// const HOST: string = '0.0.0.0'
 
 // App
 const app = express()
 const server: http.Server = http.createServer(app)
-//socket
-const io: socketio.Server = new socketio.Server(server, {
-  cors: {
-    origin: '*',
-    methods: '*',
-    allowedHeaders: '*',
-  },
-})
+// //socket
+// const io: socketio.Server = new socketio.Server(server, {
+//   cors: {
+//     origin: '*',
+//     methods: '*',
+//     allowedHeaders: '*',
+//   },
+// })
 
 //cors許可
 app.use(
@@ -38,12 +37,12 @@ app.use(bodyParser.json())
 // task関連API
 app.use(taskRouter)
 
-// socket
-io.on('connection', (socket: socketio.Socket) => {
-  console.log('connect')
-  socketChargeUpdate(socket)
-})
+// // socket
+// io.on('connection', (socket: socketio.Socket) => {
+//   console.log('connect')
+//   socketChargeUpdate(socket)
+// })
 
-server.listen(PORT, HOST)
+server.listen(PORT)
 
-console.log(`Running on http://${HOST}:${PORT}`)
+console.log(`Running on http://${PORT}`)

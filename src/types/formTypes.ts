@@ -9,3 +9,13 @@ export type createFormType = {
   deadLine: string
   department: string
 }
+
+export type statusUpType = {
+  taskId: string
+}
+
+export type loginInfo = {
+  id: string
+  pass: string
+  departmentColor: string
+}
