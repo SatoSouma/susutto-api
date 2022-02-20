@@ -18,4 +18,11 @@ export type loginInfo = {
   id: string
   pass: string
   departmentColor: string
+  employeeClass: number
+}
+
+export type taskFix = {
+  id: string
+  taskDetail: string
+  deadLine: string
 }
