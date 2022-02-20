@@ -4,6 +4,7 @@ const tables = {
   employeeTable: 'employees',
   belongTable: 'belongs',
   chargeTable: 'charge',
+  passTable: 'password',
 }
 
 export default tables

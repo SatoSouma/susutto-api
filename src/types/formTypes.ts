@@ -13,3 +13,9 @@ export type createFormType = {
 export type statusUpType = {
   taskId: string
 }
+
+export type loginInfo = {
+  id: string
+  pass: string
+  departmentColor: string
+}

@@ -9,5 +9,6 @@ router.get('/getAllTask', taskController.getTasks)
 router.put('/taskCharge', taskController.putCharge)
 router.put('/putStatus', taskController.updateStatus)
 router.get('/getAdminTask', taskController.getAdminTasks)
+router.post('/login', taskController.login)
 
 export default router

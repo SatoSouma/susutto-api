@@ -35,6 +35,11 @@ const taskController = {
     console.log(results)
     res.send(results)
   },
+
+  async login(req: express.Request, res: express.Response) {
+    const results = await tasks.login(req.body.userId, req.body.pass)
+    res.send(results)
+  },
 }
 
 export default taskController
