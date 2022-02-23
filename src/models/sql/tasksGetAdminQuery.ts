@@ -10,7 +10,7 @@ const tasksGetAdminQuery = async (nowDate: string) => {
   const taskTodoQuery = `SELECT a.id , a.taskName ,a.taskDetail, a.deadLine , b.departmentColor ,b.departmentName FROM ${tables.taskTable} as a INNER JOIN ${tables.departmentTable} as b ON a.departmentNo = b.id WHERE a.deadLine >= ? AND a.taskStatus = 0 `
   const taskTodoValue = [nowDate]
   const taskDoneQuery = `SELECT a.id , a.taskName ,a.taskDetail, a.deadLine , b.departmentColor ,b.departmentName, e.employeeName FROM ${tables.taskTable} as a INNER JOIN ${tables.departmentTable} as b ON a.departmentNo = b.id INNER JOIN ${tables.chargeTable} as c ON a.id = c.taskId INNER JOIN ${tables.employeeTable} as e ON e.id = c.employeeId WHERE a.taskStatus = 2`
-  const taskNoAchieveQuery = `SELECT a.id , a.taskName ,a.taskDetail, a.deadLine , b.departmentColor ,b.departmentName, e.employeeName FROM ${tables.taskTable} as a INNER JOIN ${tables.departmentTable} as b ON a.departmentNo = b.id LEFT OUTER JOIN ${tables.chargeTable} as c ON a.id = c.taskId LEFT OUTER JOIN ${tables.employeeTable} as e ON c.employeeId = e.id WHERE a.deadLine <= ? AND (a.taskStatus = 0 OR 1) `
+  const taskNoAchieveQuery = `SELECT a.id , a.taskName ,a.taskDetail, a.deadLine , b.departmentColor ,b.departmentName, e.employeeName FROM ${tables.taskTable} as a INNER JOIN ${tables.departmentTable} as b ON a.departmentNo = b.id LEFT OUTER JOIN ${tables.chargeTable} as c ON a.id = c.taskId LEFT OUTER JOIN ${tables.employeeTable} as e ON c.employeeId = e.id WHERE a.deadLine <= ? AND (a.taskStatus <> 2 ) `
   const taskNoAhieveValue = [nowDate]
 
   try {

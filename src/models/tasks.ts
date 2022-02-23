@@ -1,9 +1,10 @@
 import moment from 'moment-timezone'
 import { tasksChargeQuery, tasksGetQuery, tasksQuery } from './index'
-import { putChargeFormType, createFormType, statusUpType, loginInfo } from '../types/formTypes'
+import { putChargeFormType, createFormType, statusUpType, loginInfo, taskFix } from '../types/formTypes'
 import tasksStatusUpQuery from './sql/tasksStatusUpQuery'
 import tasksGetAdminQuery from './sql/tasksGetAdminQuery'
 import employeeGetQuery from './sql/employeeGetQuery'
+import taskFixQuery from './sql/taskFixQuery'
 
 moment.tz.setDefault('Asia/Tokyo')
 
@@ -42,14 +43,12 @@ const tasks = {
   async getAdminTasks() {
     const nowDate = moment().format('YYYY-MM-DD HH:mm:ss')
     const result = await tasksGetAdminQuery(nowDate)
-    console.log(result)
     return result
   },
 
   async login(id: string, pass: string) {
     let loginFlug: boolean = false
     let departmentColor: string = ''
-    console.log('id' + id)
     const loginInfo = await employeeGetQuery()
     console.log(loginInfo)
 
@@ -69,6 +68,39 @@ const tasks = {
     } else {
       return false
     }
+  },
+
+  async AdminLogin(id: string, pass: string) {
+    let loginFlug: boolean = false
+
+    const loginInfo = await employeeGetQuery()
+    console.log(loginInfo)
+
+    loginInfo.map((val: loginInfo) => {
+      if (val.id == id) {
+        if (val.pass == pass) {
+          if (val.employeeClass == 1) {
+            loginFlug = true
+          }
+        }
+      }
+    })
+
+    if (loginFlug) {
+      return true
+    } else {
+      return false
+    }
+  },
+
+  async taskFix(form: taskFix) {
+    console.log(form)
+    const id = form.id
+    const taskDetail = form.taskDetail
+    const deadLine = form.deadLine
+    const nowDate = moment().format('YYYY-MM-DD HH:mm:ss')
+    const result = await taskFixQuery(id, taskDetail, deadLine, nowDate)
+    return result
   },
 }
 

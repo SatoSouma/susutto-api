@@ -32,12 +32,22 @@ const taskController = {
 
   async getAdminTasks(req: express.Request, res: express.Response) {
     const results = await tasks.getAdminTasks()
-    console.log(results)
     res.send(results)
   },
 
   async login(req: express.Request, res: express.Response) {
     const results = await tasks.login(req.body.userId, req.body.pass)
+    res.send(results)
+  },
+
+  async adminLogin(req: express.Request, res: express.Response) {
+    const results = await tasks.AdminLogin(req.body.userId, req.body.pass)
+    res.send(results)
+  },
+
+  async taskFix(req: express.Request, res: express.Response) {
+    const formData = req.body
+    const results = await tasks.taskFix(formData)
     res.send(results)
   },
 }
