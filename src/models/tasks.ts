@@ -28,6 +28,7 @@ const tasks = {
 
   async putCharge(form: putChargeFormType) {
     const taskId = form.taskId
+    console.log(taskId)
     const employeeId = form.employeeId
     const nowDate = moment().format('YYYY-MM-DD')
     const result = await tasksChargeQuery(taskId, employeeId, nowDate)

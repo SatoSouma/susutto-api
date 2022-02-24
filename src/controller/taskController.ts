@@ -7,12 +7,14 @@ const taskController = {
   },
 
   async store(req: express.Request, res: express.Response) {
+    console.log('通過')
     const formData = req.body
     const results = await tasks.create(formData)
     res.send(results)
   },
 
   async getTasks(req: express.Request, res: express.Response) {
+    console.log('通過')
     const id = req.query.id
     const results = await tasks.getTasks(id as string)
     res.send(results)
@@ -31,6 +33,7 @@ const taskController = {
   },
 
   async getAdminTasks(req: express.Request, res: express.Response) {
+    console.log('通過')
     const results = await tasks.getAdminTasks()
     res.send(results)
   },

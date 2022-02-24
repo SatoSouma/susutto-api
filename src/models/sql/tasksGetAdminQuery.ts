@@ -4,7 +4,6 @@ import tables from './tableName'
 
 const tasksGetAdminQuery = async (nowDate: string) => {
   const conn = await mysql.createConnection(config as mysql.ConnectionOptions)
-  console.log(nowDate)
   const taskDoingQuery = `SELECT a.id , a.taskName ,a.taskDetail, a.deadLine , b.departmentColor ,b.departmentName, e.employeeName FROM ${tables.taskTable} as a INNER JOIN ${tables.departmentTable} as b ON a.departmentNo = b.id INNER JOIN ${tables.chargeTable} as c ON a.id = c.taskId INNER JOIN ${tables.employeeTable} as e ON e.id = c.employeeId WHERE a.taskStatus = 1 AND a.deadLine >= ?`
   const taskDoingValue = [nowDate]
   const taskTodoQuery = `SELECT a.id , a.taskName ,a.taskDetail, a.deadLine , b.departmentColor ,b.departmentName FROM ${tables.taskTable} as a INNER JOIN ${tables.departmentTable} as b ON a.departmentNo = b.id WHERE a.deadLine >= ? AND a.taskStatus = 0 `
