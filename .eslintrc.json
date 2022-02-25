@@ -5,7 +5,7 @@
   },
   "parser": "@typescript-eslint/parser",
   "extends": [
-    "eslint:recommended", //ESLintおすすめルールの読み込み
+    // "eslint:recommended", //ESLintおすすめルールの読み込み
     "prettier" //Prettier適用
   ],
   "parserOptions": { "sourceType": "module" },

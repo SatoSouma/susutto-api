@@ -4,8 +4,9 @@
   "description": "Node.js on Docker",
   "main": "server.ts",
   "scripts": {
-    "dev": "ts-node-dev --poll server.ts",
-    "start": "nodemon server.ts",
+    "dev": "ts-node-dev --poll src/server.ts",
+    "build": "tsc --build",
+    "start": "node dist/server.js",
     "lint": "eslint ./**/*.ts && eslint ./server.ts && prettier ./**/*.ts"
   },
   "dependencies": {

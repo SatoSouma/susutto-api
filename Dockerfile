@@ -20,4 +20,4 @@ COPY . .
 EXPOSE 8080
 
 # containerが立ち上がった時に実行されるコマンド
-# CMD [ "npm" , "start" ] 
+CMD [ "npm" , "start" ] 
