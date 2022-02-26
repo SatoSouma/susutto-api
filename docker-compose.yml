@@ -12,8 +12,7 @@ services:
     # 環境変数の設定
     environment:
       - DEBUG=app:*
-    # コンテナ内のディレクトリをマウントする　仮想環境またはHOST環境に変更があった時に同じ状態にする
-    volumes:
-      - ./:/app
     #起動時のコンテナ内のカレントディレクトリ
     working_dir: /app
+    env_file:
+      - .env

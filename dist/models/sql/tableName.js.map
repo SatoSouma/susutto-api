@@ -1,1 +1,0 @@
-{"version":3,"file":"tableName.js","sourceRoot":"","sources":["../../../src/models/sql/tableName.ts"],"names":[],"mappings":";;AAAA,MAAM,MAAM,GAAG;IACb,SAAS,EAAE,OAAO;IAClB,eAAe,EAAE,aAAa;IAC9B,aAAa,EAAE,WAAW;IAC1B,WAAW,EAAE,SAAS;IACtB,WAAW,EAAE,QAAQ;IACrB,SAAS,EAAE,UAAU;CACtB,CAAA;AAED,kBAAe,MAAM,CAAA"}

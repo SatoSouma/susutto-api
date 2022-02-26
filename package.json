@@ -10,18 +10,20 @@
     "lint": "eslint ./**/*.ts && eslint ./server.ts && prettier ./**/*.ts"
   },
   "dependencies": {
-    "@types/mysql2": "github:types/mysql2",
     "body-parser": "^1.19.1",
+    "dotenv": "^16.0.0",
     "express": "^4.16.1",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.34",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
     "promise-mysql": "^5.1.0",
-    "socket.io": "^4.4.1"
+    "socket.io": "^4.4.1",
+    "yarn": "^1.22.17"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
+    "@types/mysql2": "github:types/mysql2",
     "@types/moment": "^2.13.0",
     "@types/mysql": "^2.15.20",
     "@types/node": "^17.0.14",
@@ -33,5 +35,8 @@
     "prettier": "^2.5.1",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.5.5"
-  }
+  },
+  "repository": "git@github.com:SatoSouma/tw-api.git",
+  "author": "sato-souma <59986133+sato-souma@users.noreply.github.com>",
+  "license": "MIT"
 }
