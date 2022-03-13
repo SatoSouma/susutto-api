@@ -1,13 +1,11 @@
 import mysql from 'mysql2'
 
-console.log(process.env.HOST)
-
 const config: mysql.ConnectionOptions = {
-  host: process.env.HOST,
-  user: process.env.USER,
-  password: process.env.PASS,
-  database: process.env.DBNAME,
-  port: Number(process.env.PORT),
+  host: process.env.DATABASE_HOST,
+  user: process.env.DATABASE_USER,
+  database: process.env.DATABASE_DBNAME,
+  password: process.env.DATABASE_PASS,
+  port: Number(process.env.DATABASE_POST),
 }
 
 export default config

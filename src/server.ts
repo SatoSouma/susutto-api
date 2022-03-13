@@ -7,7 +7,7 @@ import socketio from 'socket.io'
 import { socketChargeUpdate, socketTaskCreate, socketTaskFix, socketTaskUpdate } from './socket/socketConnect'
 
 // Constants
-const PORT: number = 8080
+const PORT = Number(process.env.API_PORT)
 
 // App
 const app = express()
