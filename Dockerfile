@@ -1,23 +1,27 @@
 # ベースイメージの指定
-FROM node:16
+FROM node:16-alpine as builder
+RUN apk add --no-cache nodejs
 
-# アプリケーションディレクトリ(コンテナ内)を作成する、下記コマンドがそこで実行される。
+ARG PORT
+ARG HOST
+ARG DBNAME
+ARG USER
+ARG PASS
+
 WORKDIR /app
-
-# アプリケーションの依存関係をコンテナ内にコピーする
-# ワイルドカードを使用して、package.json と package-lock.json の両方が確実にコピーされるようにします。
-COPY package*.json ./
-
-# packege.jsonの記述からライブラリをインストール(コンテナ内で実行される) image作成時に一度実行
-RUN npm install
-# 本番用にコードを作成している場合
-# RUN npm install --only=production
-
-# アプリケーションのソースをコンテナ内にコピーする
+COPY package.json yarn.lock ./
+RUN yarn install 
 COPY . .
+RUN yarn build
+
+FROM node:16-alpine AS runner
+WORKDIR /app
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
 
 # 最適なポート番号を入れるらいしい 実際に立ち上げてるポート番号と差異があっても影響なし　
-EXPOSE 8080
+EXPOSE 8010
 
 # containerが立ち上がった時に実行されるコマンド
 CMD [ "npm" , "start" ] 
