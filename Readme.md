@@ -1,80 +1,56 @@
-# タスク管理アプリの API
+# ススット(スーパーの業務管理システム)の API
 
-### /create
-task作成
+## 作品概要
 
-### /getTask
-部署ごとのtask取得
+### 初めに
 
-### /putCharge
-task担当者更新
+- デモ動画、フロントエンド技術、制作理由に関しては[こちら](https://github.com/SatoSouma/susutto-frontend)をご覧ください。
 
-## 概要
+### 各エンドポイントの説明
 
-# Docker 起動方法メモ
+- **_`/create`_**
+  > 指定された業務名、部署、期限、業務詳細の情報から業務の作成を行う。
+- **_`/getAllTask`_**
+  > ログインしている従業員の所属している部署に配布されている全ての業務と、自信が担当している業務の情報を取得。
+- **_`/taskCharge`_**
+  > 担当する業務の登録を行う。
+- **_`/putStatus`_**
+  > 業務が完了した事を登録する。
+- **_`/getAdminTask`_**
+  > 全ての業務情報の取得。
+- **_`/login`_**
+  > 一般従業員ログイン処理。
+- **_`/adminLogin`_**
+  > 管理者ログイン処理。
+- **_`/taskFix`_**
+  > 業務の期限を伸ばす処理を実行。
 
-## Dockerfile
+### 使用技術
 
-### image 作成
+#### バックエンド
 
-```bash
-docker image build . -t myapp:v1
-```
+- express
+  - TypeScript
+  - socket
+- Docker(現在開発環境用になっていません。)
 
-> **_-t_** はタグ付けオプション 同じタグ名で build すると image を更新できる
+#### クラウド(現在はデプロイしていません。)
 
-### image 一覧
+- [構成図](https://drive.google.com/file/d/1TH72FhdCfNKCxnFCq3JExqYpv1o0h6mD/view?usp=sharing)
 
-```bash
-docker image ls
-```
+#### 使用サービス
 
-### image 削除
+- appRunner(フロント・バック)
+- RDS(DB)
 
-```bash
-docker image rm
-```
+### 改善点・反省点
 
-### コンテナ作成
+#### クラウド
 
-```bash
-docker container run -p 80:80 -d myapp:v1
-```
+- `appRunner`で済ませてしまったので、セキュリティやコストが担保できていない状態になってしまった。
+- 理想として将来的に`ECS on Fargate`で構築したい。
 
-> - **_-d_** はデタッチモード(バックグラウンド)で実行 -p でポート番号を指定 <ホストのポート>:<コンテナのポート>
-> - <コンテナのポート>が express で指定しているポート番号と同一でなければならない Dockerfile の EXPOSE も明示的に指定する
-> - <ホストのポート>実際にアクセスするポート番号はこれになる
+#### バックエンド
 
-### コンテナ一覧表示
-
-```bash
-docker container ls
-```
-
-### コンテナ内に入る
-
-```bash
-docker container exec -it <コンテナ ID> /bin/sh
-```
-
-### コンテナの停止
-
-```bash
-docker container stop <コンテナ ID>
-```
-
-## docker-compose.yml
-
-### image をビルドして docker-compose 内に記述してある内容でコンテナを立ち上げ
-
-```bash
-docker-compose up
-```
-
-> **_-d_** でバックグラウンドで立ち上げ
-
-### docker-compose 内に記述してあるコンテナの停止
-
-```bash
-docker-compose down
-```
+- ディレクトリ構成で悩むことが多く、製作中も不安なままコードを書いてしまっていた。
+- `Node`のサーバーサイドフレームワークである`Nest`を導入してディレクト構成に対しての不安を払拭したい。
