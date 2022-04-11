@@ -1,10 +1,6 @@
 import moment from 'moment-timezone'
-import { tasksChargeQuery, tasksGetQuery, tasksQuery } from './index'
+import { tasksChargeQuery, tasksGetQuery, tasksQuery, tasksStatusUpQuery, employeeGetQuery, tasksGetAdminQuery, taskFixQuery } from './index'
 import { putChargeFormType, createFormType, statusUpType, loginInfo, taskFix } from '../types/formTypes'
-import tasksStatusUpQuery from './sql/tasksStatusUpQuery'
-import tasksGetAdminQuery from './sql/tasksGetAdminQuery'
-import employeeGetQuery from './sql/employeeGetQuery'
-import taskFixQuery from './sql/taskFixQuery'
 
 moment.tz.setDefault('Asia/Tokyo')
 
