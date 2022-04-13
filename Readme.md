@@ -29,7 +29,8 @@
 
 #### バックエンド
 
-- express
+- nodeJs
+- express ver4.16.1
   - TypeScript
   - socket
 - Docker(現在開発環境用になっていません。)
